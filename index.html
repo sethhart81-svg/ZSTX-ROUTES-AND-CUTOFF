@@ -30,6 +30,17 @@
 
 <h1>ZSTX ROUTES AND SCHEDULES</h1>
 
+<div id="ct-clock" style="
+    text-align:center;
+    font-size:24px;
+    font-weight:bold;
+    background:#e6f2ff;
+    border:2px solid #7ea3cc;
+    padding:10px;
+    border-radius:8px;
+    margin-bottom:20px;">
+</div>
+
 <table>
   <tr>
     <th>Route</th>
@@ -83,7 +94,7 @@
 
 <h2>Wire Cutting Service</h2>
 
-<p>10 cuts or less received by 4:00 pm, Same Day Shipping (Exception to the cut-off time is for the local Houston market.)</p>
+<p>10 cuts or less received by 4:00 pm CT, Same Day Shipping (Exception to the cut-off time is for the local Houston market.)</p>
 
 <p>*11-20 cuts, please call to check availability (Exception to the cut-off time is for local Houston market.)</p>
 
@@ -95,7 +106,29 @@
 
 <p>¹Subject to Carrier availability</p>
 <p>²2X Service is available from certain National Zones for specific branches served within the local district. Contact the Service Center for available branches served and daily shipping information.</p>
-<p>³1100 Cut-Off Time for same-day local truck delivery, otherwise 1800.</p>
+<p>³11:00 AM CT Cut-Off Time for same-day local truck delivery, otherwise 1800.</p>
+<script>
+function updateCTTime() {
+    const now = new Date();
 
+    const ctTime = now.toLocaleString("en-US", {
+        timeZone: "America/Chicago",
+        weekday: "long",
+        month: "long",
+        day: "numeric",
+        year: "numeric",
+        hour: "numeric",
+        minute: "2-digit",
+        second: "2-digit",
+        hour12: true
+    });
+
+    document.getElementById("ct-clock").innerHTML =
+        "Current Central Time: " + ctTime + " CT";
+}
+
+updateCTTime();
+setInterval(updateCTTime, 1000);
+</script>
 </body>
 </html>
